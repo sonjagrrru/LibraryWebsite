@@ -1,0 +1,133 @@
+[{
+  "_id": {
+    "$oid": "63027cf4f396f82b879621a5"
+  },
+  "userType": "admin",
+  "username": "admin",
+  "password": "Admin123+",
+  "name": "Petar",
+  "lastname": "Petrovic",
+  "address": "Cara Dusana 229, Indjija",
+  "phone": "+381604294368",
+  "mail": "pera@etf.rs",
+  "img": "nema.png",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "63027d4af396f82b879621a7"
+  },
+  "userType": "moderator",
+  "username": "moderator",
+  "password": "moderator123",
+  "name": "Ana",
+  "lastname": "Jovanovic",
+  "address": "Mileticeva 103, Subotica",
+  "phone": "+38165444777",
+  "mail": "ana@etf.rs",
+  "img": "nema.png",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "63027d86f396f82b879621a9"
+  },
+  "userType": "user",
+  "username": "user1",
+  "password": "user1",
+  "name": "Mara",
+  "lastname": "Markovic",
+  "address": "Zanatlijska 5, Indjija",
+  "phone": "+38161999368",
+  "mail": "mara@etf.rs",
+  "img": "nema.png",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "6302d6f97827a0c214922572"
+  },
+  "userType": "user",
+  "username": "sonja",
+  "password": "sonja123",
+  "lastname": "Grubor",
+  "address": "Miletićeva 56, Inđija",
+  "phone": "+381614294368",
+  "mail": "sonja@gmail.com",
+  "img": "nema.png",
+  "__v": 0,
+  "name": "Sonja",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "630387b855f6c20b89dd9b79"
+  },
+  "userType": "moderator",
+  "username": "mmastelica",
+  "password": "Marta123+",
+  "lastname": "Mastelica",
+  "address": "Miletićeva 41a, Inđija",
+  "phone": "+381605594506",
+  "mail": "mmaselica@gmail.com",
+  "img": "nema.png",
+  "__v": 0,
+  "name": "Marta",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "630407257d14059173a262e3"
+  },
+  "userType": "user",
+  "username": "joxyy",
+  "password": "Jovana123+",
+  "lastname": "Jevtić",
+  "address": "Južni bulevar 18, Beograd",
+  "phone": "+38169555777",
+  "mail": "joxyly@gmail.com",
+  "img": "prvaOsoba.png",
+  "__v": 0,
+  "name": "Jovana",
+  "status": "active"
+},{
+  "_id": {
+    "$oid": "63041b0546076aa49eef9260"
+  },
+  "userType": "user",
+  "username": "jovanjoca",
+  "password": "Jovan123+",
+  "lastname": "Jovanovic",
+  "address": "Zanatlijska 10, Inđija",
+  "phone": "+38165777444",
+  "mail": "joca@etf.rs",
+  "img": "drugaOsoba.png",
+  "__v": 0,
+  "name": "Jovan",
+  "status": "blocked"
+},{
+  "_id": {
+    "$oid": "6306bbdc228a528aba9d09a5"
+  },
+  "userType": "user",
+  "username": "mikela00",
+  "password": "Milos123+",
+  "name": "Milos",
+  "lastname": "Milosevic",
+  "address": "Mileticeva 56, Valjevo",
+  "phone": "+381642272853",
+  "mail": "miki00@etf.rs",
+  "img": "trecaOsoba.png",
+  "status": "active",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "630a72fa04c4eff5a679241e"
+  },
+  "userType": "user",
+  "username": "gaga",
+  "password": "Gaga123+",
+  "name": "Dragana",
+  "lastname": "Macic",
+  "address": "Zmaj Jovina 12a, Beograd",
+  "phone": "+38162555333",
+  "mail": "gaga@etf.rs",
+  "img": "vendi.png",
+  "status": "active",
+  "__v": 0
+}]

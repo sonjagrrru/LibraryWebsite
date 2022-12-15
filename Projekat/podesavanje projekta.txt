@@ -1,0 +1,19 @@
+baza u mongo ti se zove projekat
+frontend: 
+ - instalacija angulara
+	npm install @angular/cli
+ - kreiranje projekta
+	ng new library
+	
+	routing YES
+	CSS
+ - uvozenje ng material 
+	cd library
+	ng add @angular/material
+ - kopiras src
+ - tsconfog.json -> strict = false
+
+backend: UZMES NJIHOV I SAMO SVOJE SVE KOPIRAS
+ - npm install --save multer
+ - npm audit fix --force
+ - kopiras src

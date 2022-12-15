@@ -1,0 +1,103 @@
+[{
+  "_id": {
+    "$oid": "630a8de7ec9e10c7f66037cf"
+  },
+  "userMail": "gaga@etf.rs",
+  "bookId": 1,
+  "dateOfBorrowing": "Thu Aug 18 2022 00:00:00 GMT+0200 (Central European Summer Time)",
+  "dateOfReturn": "Thu Jan 01 1970 00:00:00 GMT+0100 (Central European Standard Time)",
+  "status": "active",
+  "writers": "antoan de sent egziperi",
+  "bookName": "mali princ",
+  "produzena": true
+},{
+  "_id": {
+    "$oid": "63112ee035ba96fee5ec7262"
+  },
+  "userMail": "gaga@etf.rs",
+  "bookId": 3,
+  "dateOfBorrowing": "Thu Aug 11 2022 00:00:00 GMT+0200 (Central European Summer Time)",
+  "dateOfReturn": "2022-09-02T23:02:41.754Z",
+  "status": "finished",
+  "writers": "mladen brkic",
+  "bookName": "ljubav u doba kokaina",
+  "produzena": false
+},{
+  "_id": {
+    "$oid": "631238f5cceb68d44016d2d7"
+  },
+  "userMail": "sonja@gmail.com",
+  "bookName": "mali princ",
+  "bookId": 1,
+  "dateOfBorrowing": "Fri Sep 02 2022",
+  "dateOfReturn": "2022-09-02T23:03:59.975Z",
+  "status": "finished",
+  "writers": "antoan de sent egziperi",
+  "produzena": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63128bc676bb6e82ee3a7866"
+  },
+  "userMail": "sonja@gmail.com",
+  "bookName": "50 nijansi sive",
+  "bookId": 4,
+  "dateOfBorrowing": "Sat Sep 03 2022",
+  "dateOfReturn": "2022-09-02T23:06:31.469Z",
+  "status": "finished",
+  "writers": "mina vrbaski",
+  "produzena": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63128bda76bb6e82ee3a7874"
+  },
+  "userMail": "sonja@gmail.com",
+  "bookName": "50 nijansi mracnije",
+  "bookId": 5,
+  "dateOfBorrowing": "Sat Sep 03 2022",
+  "dateOfReturn": "2022-09-03T14:15:40.972Z",
+  "status": "finished",
+  "writers": "mina vrbaski",
+  "produzena": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6313618dd8e6c978c060929c"
+  },
+  "userMail": "mmaselica@gmail.com",
+  "bookName": "50 nijansi mracnije",
+  "bookId": 5,
+  "dateOfBorrowing": "2022-09-03T14:15:40.972Z",
+  "dateOfReturn": "Thu Jan 01 1970 00:00:00 GMT+0100 (Central European Standard Time)",
+  "status": "active",
+  "writers": "mina vrbaski",
+  "produzena": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6313686a118f8babbfd57aeb"
+  },
+  "userMail": "sonja@gmail.com",
+  "bookName": "50 nijansi mracnije",
+  "bookId": 5,
+  "dateOfBorrowing": "2022-09-03T14:44:58.574Z",
+  "dateOfReturn": "Thu Jan 01 1970 00:00:00 GMT+0100 (Central European Standard Time)",
+  "status": "active",
+  "writers": "mina vrbaski",
+  "produzena": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6313686a118f8babbfd57aed"
+  },
+  "userMail": "joxyly@gmail.com",
+  "bookName": "50 nijansi mracnije",
+  "bookId": 5,
+  "dateOfBorrowing": "2022-09-03T14:44:58.574Z",
+  "dateOfReturn": "Thu Jan 01 1970 00:00:00 GMT+0100 (Central European Standard Time)",
+  "status": "active",
+  "writers": "mina vrbaski",
+  "produzena": false,
+  "__v": 0
+}]

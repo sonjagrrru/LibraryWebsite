@@ -1,0 +1,40 @@
+[{
+  "_id": {
+    "$oid": "6313412d29618eb20223b994"
+  },
+  "bookId": 5,
+  "mail": "mara@etf.rs",
+  "status": "active",
+  "date": "Sat Sep 3 2022 13:09:00 GMT+0200 (Central European Summer Time)",
+  "title": "50 nijansi mracnije"
+},{
+  "_id": {
+    "$oid": "63134e42a5a52fabb4cec440"
+  },
+  "bookId": 5,
+  "mail": "mmaselica@gmail.com",
+  "status": "finished",
+  "date": "2022-09-03T12:53:22.776Z",
+  "__v": 0,
+  "title": "50 nijansi mracnije"
+},{
+  "_id": {
+    "$oid": "63136833118f8babbfd57ab5"
+  },
+  "bookId": 5,
+  "title": "50 nijansi mracnije",
+  "mail": "sonja@gmail.com",
+  "status": "finished",
+  "date": "2022-09-03T14:44:03.592Z",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6313684f118f8babbfd57acf"
+  },
+  "bookId": 5,
+  "title": "50 nijansi mracnije",
+  "mail": "joxyly@gmail.com",
+  "status": "finished",
+  "date": "2022-09-03T14:44:31.502Z",
+  "__v": 0
+}]

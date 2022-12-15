@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "63057e402f847ce8a3461c3f"
+  },
+  "username": "gaga1999",
+  "password": "Gaga123+",
+  "name": "Dragana",
+  "lastname": "Macic",
+  "address": "Novosadski put 132, Cacak",
+  "phone": "+38169555777",
+  "mail": "gaga@etf.rs",
+  "img": "vendi.png",
+  "__v": 0,
+  "id": 3
+}]

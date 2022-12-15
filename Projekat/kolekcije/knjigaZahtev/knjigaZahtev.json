@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "6308cba5c6632d5206563d47"
+  },
+  "id": 1,
+  "title": "na drini cuprija",
+  "genre": "istorijski roman",
+  "language": "srpski",
+  "publishYear": 2012,
+  "img": "knjiga4.png",
+  "writers": "ivo andric",
+  "caption": "Na Drini ćuprija jedno je od najvećih romana slavnog bosanskohercegovačkog, srpskog i hrvatskog pisca Ive Andrića. ",
+  "username": "mmastelica",
+  "numOfBooks": 5
+},{
+  "_id": {
+    "$oid": "630a2f2c839c5029030d6256"
+  },
+  "id": 3,
+  "title": "operativni sistemi",
+  "genre": "it, racunarstvo",
+  "language": "srpski",
+  "publishYear": 2021,
+  "img": "os.png",
+  "writers": "dragan milicev",
+  "caption": "Кnjiga se bavi namenom i osnovnim konceptima operativnih sistema i principima njihovog korišćenja, funkcionisanja i konstrukcije. U knjizi su objašnjeni problemi koji se sreću u primeni i konstrukciji operativnih sistemima i načini rešavanja tih problema. Prikazani principi su ilustrovani primerima iz prakse i opisan je način korišćenja operativnih sistema preko korisničkog interfejsa i iz programa.",
+  "__v": 0,
+  "username": "mmastelica",
+  "numOfBooks": 10
+}]

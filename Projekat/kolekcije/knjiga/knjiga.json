@@ -1,0 +1,101 @@
+[{
+  "_id": {
+    "$oid": "6307f1ca4a60dd27278e0c16"
+  },
+  "id": 1,
+  "title": "mali princ",
+  "genre": "deciji roman",
+  "language": "srpski",
+  "publishYear": 2003,
+  "img": "nemaknjiga.png",
+  "numOfFreeBooks": 15,
+  "writers": "antoan de sent egziperi",
+  "caption": "Mali princ (fr. Le Petit Prince) najpoznatija je novela francuskog avijatičara Antoinea de Sainta-Exuperyja iz 1943. godine. Saint-Exupéry napisao ju je dok je živeo u SAD-u. Prevedena je na preko 180 svetskih jezika i prodana u više od 80 miliona primeraka [1][2], tako da je to jedna od najprodavanijih knjiga svijeta.\n\nKnjiga je ilustrirana vlastitim piščevim crtežima, njih je koristio da opiše likove. Knjiga je mnogostruko adaptirana, u raznim oblicima.",
+  "bookOfDay": true,
+  "numOfRatings": 156,
+  "rating": 8.8,
+  "numOfBorrowing": 120,
+  "publisher": "zavod za udzbenike",
+  "numOfAllBooks": 15,
+  "username": "gaga"
+},{
+  "_id": {
+    "$oid": "63081d644a60dd27278e0c17"
+  },
+  "id": 2,
+  "title": "mali milijarder",
+  "genre": "deciji roman",
+  "language": "srpski",
+  "publishYear": 2015,
+  "img": "mali.png",
+  "numOfFreeBooks": 10,
+  "writers": "dejvid viliams",
+  "caption": "Mali milijarder treća je knjiga Davida Walliamsa koju je Malac čitao, i sudeći po reakcijama, njemu draža od Banditske Bakice i Bljakburgera.",
+  "bookOfDay": false,
+  "numOfRatings": 15,
+  "rating": 7.8,
+  "numOfBorrowing": 69,
+  "publisher": "kreativni centar",
+  "numOfAllBooks": 10,
+  "username": ""
+},{
+  "_id": {
+    "$oid": "6308aa06c6632d5206563d40"
+  },
+  "id": 3,
+  "title": "ljubav u doba kokaina",
+  "genre": "deciji roman",
+  "language": "srpski",
+  "publishYear": 2015,
+  "img": "knjiga1.png",
+  "numOfFreeBooks": 6,
+  "writers": "mladen brkic",
+  "caption": "Ljubav u doba kokaina je dramatična i porazna ispovest beogradske studentkinje, koju je njen mladić gurnuo u pakao droge. Glavna junakinja Nina zaljubljuje se u svog vršnjaka, zavodnika i kozera Marka, i postaje zavisna od njegove pažnje i ljubavi. Ali njen svet se ruši kad je se on zasiti i kad je ostavi. ",
+  "bookOfDay": false,
+  "numOfRatings": 30,
+  "rating": 9.8,
+  "numOfBorrowing": 60,
+  "publisher": "kreativni centar",
+  "numOfAllBooks": 5,
+  "username": ""
+},{
+  "_id": {
+    "$oid": "6308aadec6632d5206563d42"
+  },
+  "id": 4,
+  "title": "50 nijansi sive",
+  "genre": "ljubavni roman",
+  "language": "srpski",
+  "publishYear": 2015,
+  "img": "knjiga2.png",
+  "numOfFreeBooks": 5,
+  "writers": "mina vrbaski",
+  "caption": "Proverite zbog čega je ceo svet izgubio glavu za jednim erotskim romanom. Ispitajte mračnu, neistraženu stranu seksualnosti.",
+  "bookOfDay": false,
+  "numOfRatings": 45,
+  "rating": 7.9,
+  "numOfBorrowing": 160,
+  "publisher": "kreativni centar",
+  "numOfAllBooks": 5,
+  "username": ""
+},{
+  "_id": {
+    "$oid": "6308abe1c6632d5206563d44"
+  },
+  "id": 5,
+  "title": "50 nijansi mracnije",
+  "genre": "ljubavni roman",
+  "language": "srpski",
+  "publishYear": 2017,
+  "img": "knjiga3.png",
+  "numOfFreeBooks": 0,
+  "writers": "mina vrbaski",
+  "caption": "Proverite zbog čega je ceo svet izgubio glavu za jednim erotskim romanom. Ispitajte mračnu, neistraženu stranu seksualnosti.",
+  "bookOfDay": false,
+  "numOfRatings": 10,
+  "rating": 7.1,
+  "numOfBorrowing": 20,
+  "publisher": "kreativni centar",
+  "numOfAllBooks": 3,
+  "username": "sonja"
+}]
