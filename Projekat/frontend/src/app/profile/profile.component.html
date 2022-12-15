@@ -1,0 +1,83 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Zdravo {{user.name}}! </span>
+        </div>
+        <div>
+            <button mat-raised-button *ngIf="user.userType=='admin'" (click)="adminHome()">
+                Glavna strana<mat-icon>home</mat-icon>
+            </button>
+            <button mat-raised-button *ngIf="user.userType!='admin'" (click)="home()">
+                Glavna strana<mat-icon>home</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="logout()">
+                Odjavi se<mat-icon>logout</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+        </div>
+    </mat-toolbar>
+    <br />
+    <div class="basicCenter">
+
+        <img src="../../assets/images/{{user.img}}" style="max-height: 300px;">
+
+    </div>
+    <hr>
+    <div class="basicCenter">
+        <h1>
+            <span>
+                Lični podaci
+            </span>
+        </h1>
+    </div>
+    <div class="basicCenter">
+        <h3>
+            <span *ngIf="!edit">Korisničko ime: {{user.username}}</span>
+            <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput type="text" [(ngModel)]="user.username" value="user.username" name="username">
+                <mat-hint>Unesite Vaše korisničko ime</mat-hint>
+            </mat-form-field>
+            <br />
+            <span *ngIf="!edit">Ime: {{user.name}}</span>
+            <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                <mat-label>Ime</mat-label>
+                <input matInput type="text" [(ngModel)]="user.name" value="user.name" name="name">
+                <mat-hint>Unesite Vaše ime</mat-hint>
+            </mat-form-field>
+            <br />
+            <span *ngIf="!edit">Prezime: {{user.lastname}}</span>
+            <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                <mat-label>Prezime</mat-label>
+                <input matInput type="text" [(ngModel)]="user.lastname" value="user.lastname" name="lastname">
+                <mat-hint>Unesite Vaše prezime</mat-hint>
+            </mat-form-field>
+            <br />
+            <span *ngIf="!edit">Adresa: {{user.address}}</span>
+            <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                <mat-label>Adresa</mat-label>
+                <input matInput type="text" [(ngModel)]="user.address" value="user.address" name="address">
+                <mat-hint>Unesite Vašu adresu</mat-hint>
+            </mat-form-field>
+            <br />
+            <span *ngIf="!edit">E-mail: {{user.mail}}</span>
+            <br />
+            <span *ngIf="!edit">Telefon: {{user.phone}}</span>
+            <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                <mat-label>Broj telefona</mat-label>
+                <input matInput type="text" [(ngModel)]="user.phone" name="phone" value="user.phone">
+                <mat-hint>Unesite Vaš broj telefona u formatu: +3816******</mat-hint>
+            </mat-form-field>
+        </h3>
+    </div>
+    <hr>
+    <div class="basicCenter">
+        <button mat-raised-button color="primary" *ngIf="!edit" (click)="editUser()">Izmeni podatke</button>
+        <button mat-raised-button color="primary" *ngIf="edit" (click)="saveUser()">Sačuvaj podatke</button>&nbsp;&nbsp;
+        <button mat-raised-button color="warn" *ngIf="edit" (click)="cancelEditUser()">Otkaži izmenu podataka</button>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>.
+</body>

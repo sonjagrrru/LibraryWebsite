@@ -1,0 +1,181 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary">
+        <span>Narodna biblioteka Beograd</span>
+    </mat-toolbar>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Prijavi se!
+            </mat-panel-title>
+            <mat-panel-description>
+                Unesite vaše korisničko ime i lozinku
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput type="text" [(ngModel)]="username" form required>
+                <mat-hint>Unesite korisničko ime</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Lozinka</mat-label>
+                <input matInput type="password" [(ngModel)]="password" required>
+                <mat-hint>Unesite registracionu šifru</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button type="submit" mat-raised-button color="primary" (click)="login()">Prijavi se</button>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <span style="color: rgb(239, 91, 91);"><strong>{{hintMessage}}</strong></span>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel color="primary">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Nemate nalog? Registrujte se!
+            </mat-panel-title>
+            <mat-panel-description>
+                Unesite vaše podatke
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput type="text" #kor_ime="ngModel" name="kor_ime" [(ngModel)]="usernameReg" required>
+                <mat-hint *ngIf="kor_ime.valid || !kor_ime.touched">Unesite željeno korisničko ime</mat-hint>
+                <mat-hint *ngIf="kor_ime.invalid && kor_ime.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Lozinka</mat-label>
+                <input matInput type="password" #sif="ngModel" name="lozinka" placeholder="primer: anA123."
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" [(ngModel)]="passwordReg"
+                    required>
+                <mat-hint *ngIf="sif.valid || !sif.touched">Lozinka mora da sadrži veliko slovo, broj i jedan specijalni
+                    karakter</mat-hint>
+                <mat-hint *ngIf="sif.invalid && sif.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Potvrda lozinke</mat-label>
+                <input matInput type="password" #sif2="ngModel" name="sif2" [(ngModel)]="passwordSubmitReg" required>
+                <mat-hint *ngIf="(sif2.valid || !sif2.touched)&& (passwordSubmitReg==passwordReg)">Ponovo unesite
+                    željenu lozinku</mat-hint>
+                <mat-hint *ngIf="sif2.invalid && sif2.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+                <mat-hint *ngIf="passwordSubmitReg!=passwordReg" style="color: red">Lozinke se ne poklapaju!</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Ime</mat-label>
+                <input matInput type="text" #ime="ngModel" name="ime" [(ngModel)]="firstnameReg"
+                    pattern="[A-Za-z]{1,32}" required>
+                <mat-hint *ngIf="ime.valid || !ime.touched">Unesite Vaše ime</mat-hint>
+                <mat-hint *ngIf="ime.invalid && ime.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Prezime</mat-label>
+                <input matInput type="text" #prez="ngModel" name="prez" [(ngModel)]="lastnameReg"
+                    pattern="[A-Za-z]{1,32}" required>
+                <mat-hint *ngIf="prez.valid || !prez.touched">Unesite Vaše prezime</mat-hint>
+                <mat-hint *ngIf="prez.invalid && prez.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Email adresa</mat-label>
+                <input matInput type="email" #mail="ngModel" name="mail" placeholder="primer: ex@gmail.com"
+                    [(ngModel)]="mailReg" required>
+                <mat-hint *ngIf="mail.valid || !mail.touched">Unesite Vašu email adresu</mat-hint>
+                <mat-hint *ngIf="mail.invalid && mail.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Adresa</mat-label>
+                <input matInput type="text" #adr="ngModel" name="adr" placeholder="primer: Zmaj Jovina 5, Beograd"
+                    [(ngModel)]="addressReg" required>
+                <mat-hint *ngIf="adr.valid || !adr.touched">Unesite Vašu adresu u formatu: ulica broj, grad</mat-hint>
+                <mat-hint *ngIf="adr.invalid && adr.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Broj telefona</mat-label>
+                <input matInput type="text" #phn="ngModel" name="phn" placeholder="primer: +381060111222"
+                    pattern="^\+3816([0-9]{7,8})$" [(ngModel)]="phoneReg" required>
+                <mat-hint *ngIf="phn.valid || !phn.touched">Unesite Vaš broj telefona u formatu: +3816******</mat-hint>
+                <mat-hint *ngIf="phn.invalid && phn.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <input type="file" name="myfile" (change)="selectImage($event)">
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button [disabled]="phn.invalid || ime.invalid || kor_ime.invalid || sif.invalid || sif2.invalid 
+                || adr.invalid || mail.invalid || prez.invalid || passwordSubmitReg!=passwordReg" mat-raised-button
+                color="primary" (click)="register()">Registruj se</button>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <span [ngStyle]="{'color': errorFlag? 'red' : 'white'}">{{messageReg}}</span>
+        </div>
+
+    </mat-expansion-panel>
+    <br />
+    <h1>
+        <p>Dobro došli na zvaničnu stranicu Narodne biblioteke Beograda! </p>
+    </h1>
+    <hr>
+    <h2 style="font-family: 'Times New Roman', Times, serif;" class="basicCenter">
+        Ukoliko ste naš novi član možete da se registrujete! Potrebno je samo da u padajućem meniju unesete Vaše
+        podatke i naš administrator će u najkraćem roku da potvrdi Vaš nalog.
+    </h2>
+    <h3 style="font-family: 'Times New Roman', Times, serif;" class="basicCenter">
+        U prilogu su date 3 najčitanije knjige u ovom mesecu. Uz samo par klikova možete da proverite da li je Vaša
+        knjiga dostupna i ako kreirate nalog možete već danas da zakažete pozajmljivanje Vaše omiljene knjige online
+        potpuno besplatno! Postanite član najveće srpske biblioteke i online!
+    </h3>
+    <br />
+    <div class="basicCenter">
+        <div *ngIf="pageEvent" style="border: 10px solid rgb(130, 129, 129); width: 50%;">
+            <div *ngIf="pageEvent" class="basicCenter">
+                <h2>PREDSTAVLJAMO VAM NAJČITANIJE KNJIGE NAŠE BIBLIOTEKE</h2>
+            </div>
+            <div *ngIf="pageEvent" class="basicCenter">
+                <h3>{{topBooks[pageEvent.pageIndex].title.toUpperCase()}}</h3>
+            </div>
+            <div *ngIf="pageEvent" class="basicCenter">
+                <h4>{{topBooks[pageEvent.pageIndex].genre.toUpperCase()}}</h4>
+            </div>
+            <div *ngIf="pageEvent" class="basicCenter">
+                <img src="../../assets/images/{{topBooks[pageEvent.pageIndex].img}}" style="max-height: 300px;">
+            </div>
+            <div *ngIf="pageEvent" class="basicCenter">
+                <h4 style="width: 90%;">{{topBooks[pageEvent.pageIndex].caption}}</h4>
+            </div>
+        </div>
+    </div>
+    <mat-paginator [length]="3" [pageSize]="1" (page)="pageEvent = $event" aria-label="Select page">
+    </mat-paginator>
+
+    <div class="basicCenter">
+        <h2>Pogledajte da li u našoj biblioteci postoji vaša omiljena knjiga!</h2>
+    </div>
+    <div class="basicCenter">
+        <button mat-raised-button color="primary" (click)="unlogged()">Pretraži</button>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />.
+
+</body>

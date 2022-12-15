@@ -1,0 +1,56 @@
+<body class="mat-app-background mat-typography body-fill">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Zdravo {{user.name}}! </span>
+        </div>
+        <div>
+            <button mat-raised-button (click)="home()">
+                Glavna strana<mat-icon>home</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="logout()">
+                Odjavi se<mat-icon>logout</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <a routerLink="/profile">
+                <img src="../../assets/images/{{user.img}}" width="40" height="40">
+            </a>
+        </div>
+    </mat-toolbar>
+    <br/>
+    <div class="basicCenter">
+        <table>
+            <tr>
+                <th>Naziv knjige</th>
+                <th>Autor/i</th>
+                <th>Datum zaduživanja</th>
+                <th>Datum vraćanja</th>
+                <th>Detalji o knjizi</th>
+            </tr>
+            <tr *ngFor="let borrow of borrowings">
+                <td>
+                    <span>{{borrow.bookName.toUpperCase()}}</span>
+                </td>
+                <td>
+                    <span>{{borrow.writers.toUpperCase()}}</span>
+                </td>
+                <td>
+                    <span>{{borrowDate(borrow)}}</span>
+                </td>
+                <td>
+                    <span>{{returnDate(borrow)}}</span>
+                </td>
+                <td>
+                    <span>
+                        <button *ngIf="user.status!='blocked'" color="primary" mat-raised-button (click)="bookPage(borrow.bookId)">DETALJNIJE...</button>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div class="basicCenter">
+        <button color="primary" mat-raised-button (click)="sortByTitle()">Sortiraj po nazivu knjige</button>&nbsp;&nbsp;
+        <button color="warn" mat-raised-button (click)="sortByAutors()">Sortiraj po autorima</button>&nbsp;&nbsp;
+        <button color="primary" mat-raised-button (click)="sortByBorrowDate()">Sortiraj po datumu pozajmljivanja</button>&nbsp;&nbsp;
+        <button color="warn" mat-raised-button (click)="sortByReturnDate()">Sortiraj po datumu vraćanja</button>
+    </div>
+</body>

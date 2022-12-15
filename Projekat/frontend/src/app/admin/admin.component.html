@@ -1,0 +1,403 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Administracija</span>
+        </div>
+        <div>
+            <button mat-raised-button (click)="changePass()">
+                Promeni sifru
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="logout()">
+                Odjavi se<mat-icon>logout</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <a routerLink="/profile">
+                <img src="../../assets/images/{{admin.img}}" width="40" height="40">
+            </a>
+        </div>
+    </mat-toolbar>
+    <mat-expansion-panel color="primary">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                DODAJ
+            </mat-panel-title>
+            <mat-panel-description>
+                Pritisnite da unesete podatke novog korisnika
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput type="text" [(ngModel)]="newUsername" required>
+                <mat-hint>Unesite željeno korisničko ime</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Lozinka</mat-label>
+                <input matInput type="password" name="lozinka" placeholder="primer: anA123."
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" [(ngModel)]="newPassword"
+                    required>
+                <mat-hint>Lozinka mora da sadrži veliko slovo, broj i jedan specijalni karakter</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Ime</mat-label>
+                <input matInput type="text" [(ngModel)]="newFirstname" required>
+                <mat-hint>Unesite Vaše ime</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Prezime</mat-label>
+                <input matInput type="text" [(ngModel)]="newLastname" required>
+                <mat-hint>Unesite Vaše prezime</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Email adresa</mat-label>
+                <input matInput type="text" placeholder="primer: ex@gmail.com" [(ngModel)]="newMail" required>
+                <mat-hint>Unesite Vašu email adresu</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Adresa</mat-label>
+                <input matInput type="text" placeholder="primer: Zmaj Jovina 5, Beograd" [(ngModel)]="newAddress"
+                    required>
+                <mat-hint>Unesite Vašu adresu u formatu: ulica broj, grad</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Broj telefona</mat-label>
+                <input matInput type="text" placeholder="primer: +381060111222" [(ngModel)]="newPhone" required>
+                <mat-hint>Unesite Vaš broj telefona u formatu: +3816******</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <input type="file" name="myfile" (change)="selectImage($event)">
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button mat-raised-button color="primary" (click)="register()">Registruj korisnika</button>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <span [ngStyle]="{'color': errorFlag? 'red' : 'white'}">{{infoMessage}}</span>
+        </div>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel color="primary">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Biblioteka nema Vašu omiljenu knjigu?
+            </mat-panel-title>
+            <mat-panel-description>
+                Pošaljite zahtev da je dodate!
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Naziv</mat-label>
+                <input matInput type="text" #title="ngModel" name="title" [(ngModel)]="titleReg" required>
+                <mat-hint *ngIf="title.valid || !title.touched">Unesite ime knjige</mat-hint>
+                <mat-hint *ngIf="title.invalid && title.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Žanr</mat-label>
+                <input matInput type="text" #genre="ngModel" name="genre" [(ngModel)]="genreReg" required>
+                <mat-hint *ngIf="genre.valid || !genre.touched">Unesite žanr/ove knjige</mat-hint>
+                <mat-hint *ngIf="genre.invalid && genre.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Jezik na kom je pisana knjiga</mat-label>
+                <input matInput type="text" #language="ngModel" name="language" [(ngModel)]="languageReg" required>
+                <mat-hint *ngIf="language.valid || !language.touched">Unesite jezik na kom je izdanje knjige</mat-hint>
+                <mat-hint *ngIf="language.invalid && language.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Godina objavljivanja</mat-label>
+                <input matInput type="text" #publish="ngModel" name="publish" [(ngModel)]="publishReg"
+                    pattern="[0-9]{4,4}" required>
+                <mat-hint *ngIf="publish.valid || !publish.touched">Unesite godinu izdavanja knjige</mat-hint>
+                <mat-hint *ngIf="publish.invalid && publish.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Izdavač</mat-label>
+                <input matInput type="text" #publisher="ngModel" name="publisher" [(ngModel)]="publisherReg" required>
+                <mat-hint *ngIf="publisher.valid || !publisher.touched">Unesite izdavača knjige</mat-hint>
+                <mat-hint *ngIf="publisher.invalid && publisher.touched" style="color: red">OBAVEZNO POLJE ili
+                    neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Autori</mat-label>
+                <input matInput type="text" #writers="ngModel" name="writers" [(ngModel)]="writersReg" required>
+                <mat-hint *ngIf="writers.valid || !writers.touched">Unesite ime i prezime autora knjige</mat-hint>
+                <mat-hint *ngIf="writers.invalid && writers.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Broj knjiga</mat-label>
+                <input matInput type="text" #numOfBooks="ngModel" name="numOfBooks" [(ngModel)]="numOfBooksReg"
+                    pattern="[0-9]{1,2}" required>
+                <mat-hint *ngIf="numOfBooks.valid || !numOfBooks.touched">Unesite broj primeraka knjige</mat-hint>
+                <mat-hint *ngIf="numOfBooks.invalid && numOfBooks.touched" style="color: red">OBAVEZNO POLJE ili
+                    neispravno uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field style="width: 50%;" appearance="fill">
+                <mat-label>Opis</mat-label>
+                <textarea matInput type="text" #caption="ngModel" name="caption" [(ngModel)]="captionReg"
+                    required></textarea>
+                <mat-hint *ngIf="caption.valid || !caption.touched">Unesite opis knjige</mat-hint>
+                <mat-hint *ngIf="caption.invalid && caption.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <input type="file" name="myfile" (change)="selectImage($event)">
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button [disabled]="title.invalid || genre.invalid || language.invalid || publish.invalid || writers.invalid 
+                || caption.invalid || numOfBooks.invalid || publisher.invalid" mat-raised-button color="primary"
+                (click)="insertBook()">Dodaj knjigu</button>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <span [ngStyle]="{'color': errorFlag? 'red' : 'white'}">{{messageReg}}</span>
+        </div>
+    </mat-expansion-panel>
+    <br />
+    <div class="mat-h1">Uređujte korisnike: </div>
+    <br />
+    <div class="basicCenter">
+        <form name="formica">
+            <table>
+                <tr>
+                    <th>Tip korisnika</th>
+                    <th>Korisničko ime</th>
+                    <th>Lozinka</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Adresa</th>
+                    <th>Telefon</th>
+                    <th>E-mail adresa</th>
+                    <th>Status</th>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>
+                        <span *ngIf="!edit || user.userType=='admin'">{{user.userType}}</span>
+                        <mat-form-field *ngIf="edit && user.userType!='admin'" appearance="fill">
+                            <mat-label>Podesi tip</mat-label>
+                            <select matNativeControl name="type" [(ngModel)]="user.userType">
+                                <option value="moderator">Moderator</option>
+                                <option value="user">User</option>
+                            </select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <span>{{user.username}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.password}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.lastname}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.address}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.phone}}</span>
+                    </td>
+                    <td>
+                        <span>{{user.mail}}</span>
+                    </td>
+                    <td>
+                        <span *ngIf="!edit || user.userType=='admin'">{{user.status}}</span>
+                        <mat-form-field *ngIf="edit && user.userType!='admin'" appearance="fill">
+                            <mat-label>Podesi status</mat-label>
+                            <select matNativeControl name="status" [(ngModel)]="user.status">
+                                <option value="active">Active</option>
+                                <option value="blocked">Blocked</option>
+                            </select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <button *ngIf="edit" type="submit" mat-raised-button color="warn"
+                            [disabled]="user.userType=='admin'" (click)="editUser(user)">Izmeni</button>
+                    </td>
+                    <td>
+                        <button [disabled]="user.userType=='admin'" type="submit" (click)="delete(user)"
+                            mat-raised-button color="primary">Obriši</button>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <td>
+                <button type="submit" mat-raised-button color="primary" (click)="enableEdit()">Dozvoli
+                    izmene</button>&nbsp;&nbsp;
+                <span>{{deleteUserMessage}}</span>
+            </td>
+        </form>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <span style="color: red;"><strong>{{updateInfo}}</strong></span>
+    </div>
+    <br />
+    <br />
+    <div class="mat-h1">Uređujte zahteve za registraciju: </div>
+    <br />
+    <div class="basicCenter">
+        <form name="formica2">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Korisničko ime</th>
+                    <th>Lozinka</th>
+                    <th>Ime</th>
+                    <th>Prezime</th>
+                    <th>Adresa</th>
+                    <th>Telefon</th>
+                    <th>E-mail adresa</th>
+                </tr>
+                <tr *ngFor="let req of userRequests">
+                    <td>
+                        <span>{{req.id}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.username}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.password}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.lastname}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.address}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.phone}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.mail}}</span>
+                    </td>
+                    <td>
+                        <button type="submit" mat-raised-button color="warn"
+                            (click)="registerUser(req)">Prihvati</button>
+                    </td>
+                    <td>
+                        <button type="submit" (click)="deleteReq(req)" mat-raised-button color="primary">Obriši</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br />
+    <div class="mat-h1">Uređujte knjige: </div>
+    <br />
+    <div class="basicCenter">
+        <form name="formica3">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Naslov</th>
+                    <th>Žanrovi</th>
+                    <th>Jezik</th>
+                    <th>Godina objavljivanja</th>
+                    <th>Autor/i</th>
+                    <th>Opis</th>
+                    <th>Knjiga dana</th>
+                    <th>Izdavač</th>
+                </tr>
+                <tr *ngFor="let book of books">
+                    <td>
+                        <span>{{book.id}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.title.toUpperCase()}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.genre}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.language}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.publishYear}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.writers}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.caption}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.bookOfDay?'Da':'Ne'}}</span>
+                    </td>
+                    <td>
+                        <span>{{book.publisher}}</span>
+                    </td>
+                    <td>
+                        <button type="submit" (click)="editBook(book)" mat-raised-button color="warn">Uredi knjigu</button>
+                    </td>
+                    <td>
+                        <button type="submit" (click)="deleteBook(book.id)" mat-raised-button
+                            color="primary">Obriši</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br />
+    <span>{{deleteBookMessage}}</span>
+    <br />
+    <h2>
+        <hr>
+        Trenutni broj dana koji korisnik može da zadrži knjigu je {{generalData.borrowTime}}. Korisnik može da produži
+        držanje knjige na još {{generalData.extendTime}}.
+        <hr>
+    </h2>
+    <h3>
+        <p>
+            Promenite koliko dana korisnici mogu da imaju knjigu zaduženu kod sebe i na koliko dana je moguće produžiti
+            knjigu preko sledeće forme:
+        </p>
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Zaduženje</mat-label>
+                <input matInput type="text" [(ngModel)]="borrow" pattern="^[0-9]{1,2}$">
+                <mat-hint>Unesite maksimalan broj dana na koji korisnik može da produži knjigu</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Produženje</mat-label>
+                <input matInput type="text" [(ngModel)]="extend" pattern="^[0-9]{1,2}$">
+                <mat-hint>Unesite maksimalan broj dana na koji korisnik može da zaduži knjigu</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button type="submit" (click)="setDays()" mat-raised-button color="primary">Izmeni</button>
+        </div>
+        <br />
+    </h3>
+    <hr>
+</body>

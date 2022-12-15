@@ -1,0 +1,72 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Dobro došli!</span>
+        </div>
+        <div>
+            <button mat-icon-button (click)="home()">
+                <mat-icon>home</mat-icon>
+            </button> 
+        </div>
+    </mat-toolbar>
+    <br />
+    <div class="basicCenter">
+        <h2 class="mat-display-1">PREDSTAVLJAMO VAM KNJIGU DANA!</h2>
+    </div>
+    <div class="basicCenter">
+        <mat-card class="my-card">
+            <mat-card-header>
+                <mat-card-title>{{bookOfDay.title.toUpperCase()}}</mat-card-title>
+                <mat-card-subtitle>{{bookOfDay.writers.toUpperCase()}}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="basicCenter">
+                <img src="../../assets/images/{{bookOfDay.img}}" style="max-height: 100px;">
+            </div>
+            <mat-card-content>
+                <p>
+                    {{bookOfDay.caption}}
+                </p>
+                <p>
+                    <strong>Ocena: </strong>{{bookOfDay.rating}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <h2 class="mat-display-1">Izvršite pretragu knjiga na osnovu izdavača ili naziva knjige</h2>
+    </div>
+    <div class="basicCenter">
+        <mat-form-field appearance="fill" [style.width.px]=500>
+            <mat-label>Unesite naslov knjige i/ili autora</mat-label>
+            <input matInput [(ngModel)]="searchTerm">
+            <mat-icon (click)="searchByParam()" matPrefix>search</mat-icon>
+            <mat-hint>Unesite naslov knjige i/ili autora po kome želite da vršite pretragu</mat-hint>
+        </mat-form-field>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <span style="color: red;">{{searchMessage}}</span>
+    </div>
+    <mat-grid-list cols="4" rowHeight="600px">
+        <ng-container *ngFor="let book of searchedBooks">
+            <mat-grid-tile>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{book.title.toUpperCase()}}</mat-card-title>
+                        <mat-card-subtitle>{{book.genre.toUpperCase()}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img src="../../assets/images/{{book.img}}" style="max-height: 200px;">
+                    <mat-card-content>
+                        <p>
+                            {{book.caption}}
+                        </p>
+                        <p>
+                            <strong>Ocena: </strong>{{book.rating}}
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</body>

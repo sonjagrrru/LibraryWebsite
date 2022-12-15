@@ -1,0 +1,223 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Zdravo {{user.name}}! </span>
+        </div>
+        <div>
+            <button mat-raised-button (click)="home()">
+                Glavna strana<mat-icon>home</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="logout()">
+                Odjavi se<mat-icon>logout</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <a routerLink="/profile">
+                <img src="../../assets/images/{{user.img}}" width="40" height="40">
+            </a>
+        </div>
+    </mat-toolbar>
+    <br />
+    <div class="basicCenter">
+
+        <img src="../../assets/images/{{book.img}}" style="max-width: 300px; max-height: 400px;">
+
+    </div>
+    <hr>
+    <div class="basicCenter">
+        <h1>
+            <span>
+                Podaci o knjizi
+            </span>
+        </h1>
+    </div>
+    <div class="basicCenter">
+        <table style="width: 50%;">
+            <tr>
+                <td>Naziv</td>
+                <td>
+                    <span *ngIf="!edit">{{book.title.toUpperCase()}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Naziv knjige</mat-label>
+                        <input matInput type="text" [(ngModel)]="book.title" value="book.title" name="title">
+                        <mat-hint>Unesite naziv knjige</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>Žanrovi</td>
+                <span *ngIf="!edit">{{book.genre.toUpperCase()}}</span>
+                <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                    <mat-label>Žanr</mat-label>
+                    <input matInput type="text" [(ngModel)]="book.genre" value="book.genre" name="genre">
+                    <mat-hint>Unesite žanr/ove knjige</mat-hint>
+                </mat-form-field>
+            </tr>
+            <tr>
+                <td>Jezik</td>
+                <td>
+                    <span *ngIf="!edit">{{book.language}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Jezik</mat-label>
+                        <input matInput type="text" [(ngModel)]="book.language" value="book.language" name="language">
+                        <mat-hint>Unesite jezik na kom je knjiga napisana</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>Godina izdavanja</td>
+                <td>
+                    <span *ngIf="!edit">{{book.publishYear}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Godina izdavanja</mat-label>
+                        <input matInput type="text" [(ngModel)]="book.publishYear" value="book.publishYear"
+                            name="publishYear">
+                        <mat-hint>Unesite godinu izdavanja</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>Izdavač</td>
+                <td>
+                    <span *ngIf="!edit">{{book.publisher}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Izdavač</mat-label>
+                        <input matInput type="text" [(ngModel)]="book.publisher" value="book.publisher"
+                            name="publisher">
+                        <mat-hint>Unesite izdavača</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>Ukupan broj knjiga</td>
+                <td>
+                    <span *ngIf="!edit">{{book.numOfAllBooks}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Ukupan broj knjiga</mat-label>
+                        <input matInput type="text" [(ngModel)]="numOfAllBooks" value="numOfAllBooks"
+                            name="numOfAllBooks">
+                        <mat-hint>Unesite godinu izdavanja</mat-hint>
+                    </mat-form-field>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Broj knjiga na stanju</td>
+                <td>
+                    <span>{{book.numOfFreeBooks}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Autori</td>
+                <td>
+                    <span *ngIf="!edit">{{book.writers.toUpperCase()}}</span>
+                    <mat-form-field *ngIf="edit" class="setPadd" appearance="fill">
+                        <mat-label>Autori</mat-label>
+                        <input matInput type="text" [(ngModel)]="book.writers" name="writers" value="book.writers">
+                        <mat-hint>Unesite autore knjige</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>Opis</td>
+                <td>
+                    <span *ngIf="!edit">{{book.caption}}</span>
+                    <mat-form-field *ngIf="edit" appearance="fill" style="width: 100%;">
+                        <mat-label>Opis</mat-label>
+                        <textarea matInput type="text" [(ngModel)]="book.caption" name="caption"
+                            value="book.caption"></textarea>
+                        <mat-hint>Unesite opis knjige</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr *ngIf="user.userType=='admin'">
+                <td>Knjiga dana</td>
+                <td>
+                    <span *ngIf="!edit">{{book.bookOfDay==true?'Da':'Ne'}}</span>
+                    <mat-form-field *ngIf="edit && user.userType=='admin'" appearance="fill">
+                        <mat-label>Knjiga dana?</mat-label>
+                        <select matNativeControl name="bookOfDay" [(ngModel)]="book.bookOfDay">
+                            <option value="true">Da</option>
+                            <option value="false">Ne</option>
+                        </select>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div *ngIf="edit" class="basicCenter">
+        <input type="file" name="myfile" (change)="selectImage($event)">
+    </div>
+    <br />
+    <div class="basicCenter" *ngIf="borrowNum==3 || returnError">
+        <span style="color: red;"><strong>Ne možete da pozajmite knjigu!</strong></span>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <button mat-raised-button color="primary"
+            *ngIf="!edit && (user.userType=='moderator' || user.userType=='admin')" (click)="editBook()"
+            type="submit">Izmeni
+            podatke</button>
+        <button mat-raised-button color="primary" *ngIf="!edit && book.numOfFreeBooks>0 && borrowNum<3 && !returnError"
+            (click)="borrow()" type="submit">Pozajmi knjigu</button>
+        <button mat-raised-button color="primary" *ngIf="!edit && book.numOfFreeBooks==0 && borrowNum<3 && !returnError && !isReserved"
+            (click)="reserve()" type="submit">Rezerviši knjigu</button>
+        <button mat-raised-button color="primary" *ngIf="edit" (click)="saveBook()">Sačuvaj podatke</button>&nbsp;&nbsp;
+        <button mat-raised-button color="warn" *ngIf="edit" (click)="cancelEditBook()">Otkaži izmenu podataka</button>
+    </div>
+    <br />
+    <div class="basicCenter" *ngIf="canComment">
+        <mat-form-field class="setPadd" appearance="fill" style="width: 50%;">
+            <mat-label>Komentar</mat-label>
+            <input matInput type="text" #koment="ngModel" name="koment" [(ngModel)]="comment">
+            <mat-hint *ngIf="koment.valid || !koment.touched">Unesite komentar za knjigu (maksimalan broj karaktera:
+                1000)</mat-hint>
+            <mat-hint *ngIf="koment.invalid && koment.touched" style="color: red">Neispravno
+                uneti podaci</mat-hint>
+        </mat-form-field> &nbsp;&nbsp;
+        <mat-form-field class="setPadd" appearance="fill">
+            <mat-label>Ocena</mat-label>
+            <input matInput type="text" #ocena="ngModel" name="ocena" [(ngModel)]="grade" pattern="[0-9]|10" required>
+            <mat-hint *ngIf="ocena.valid || !ocena.touched">Unesite ocenu za knjigu (1-10 ceo broj)</mat-hint>
+            <mat-hint *ngIf="ocena.invalid && ocena.touched" style="color: red">Neispravno
+                uneti podaci</mat-hint>
+        </mat-form-field>
+        <button [disabled]="ocena.invalid || koment.invalid" mat-raised-button color="primary"
+            (click)="setComment()">Ostavi komentar</button>
+    </div>
+    <br />
+    <div *ngIf="!edit" class="basicCenter">
+        <h3>Prosečna ocena: {{book.rating}}</h3>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <span *ngIf="commments.length==0" style="color: red;"><strong>Nema komentara za ovu knjigu</strong></span>
+        <table *ngIf="commments.length>0">
+            <tr>
+                <th>Korisničko ime korisnika</th>
+                <th>Ocena</th>
+                <th>Komentar</th>
+                <th>Datum ostavljanja komentara</th>
+                <th>Vreme ostavljanja komentara</th>
+            </tr>
+            <tr *ngFor="let comm of commments">
+                <td>
+                    <span>{{comm.username}}</span>
+                </td>
+                <td>
+                    <span>{{getStar(comm.grade)}}</span>
+                </td>
+                <td>
+                    <span>{{comm.comment}}</span>
+                </td>
+                <td>
+                    <span *ngIf="comm.status=='novi'">{{getDate(comm.date)}}</span>
+                    <span *ngIf="comm.status=='azuriran'">ažuriran {{getDate(comm.date)}}</span>
+                </td>
+                <td>
+                    <span>{{getTime(comm.date)}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+</body>

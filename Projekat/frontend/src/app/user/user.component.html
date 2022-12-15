@@ -1,0 +1,315 @@
+<body class="mat-app-background mat-typography">
+    <mat-toolbar class="mat-primary navbar">
+        <div>
+            <span>Zdravo {{user.name}}! </span>
+        </div>
+        <div>
+            <button mat-raised-button (click)="borrowingHistory()">
+                Istorija pozajmljivanja
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="changePass()">
+                Promeni sifru
+            </button> &nbsp;&nbsp;&nbsp;
+            <button mat-raised-button (click)="logout()">
+                Odjavi se<mat-icon>logout</mat-icon>
+            </button> &nbsp;&nbsp;&nbsp;
+            <a routerLink="/profile">
+                <img src="../../assets/images/{{user.img}}" width="40" height="40">
+            </a>
+        </div>
+    </mat-toolbar>
+    <mat-expansion-panel *ngIf="user.status=='active'" color="primary">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Biblioteka nema Vašu omiljenu knjigu?
+            </mat-panel-title>
+            <mat-panel-description>
+                Pošaljite zahtev da je dodate!
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Naziv</mat-label>
+                <input matInput type="text" #title="ngModel" name="title" [(ngModel)]="titleReg" required>
+                <mat-hint *ngIf="title.valid || !title.touched">Unesite ime knjige</mat-hint>
+                <mat-hint *ngIf="title.invalid && title.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Žanr</mat-label>
+                <input matInput type="text" #genre="ngModel" name="genre" [(ngModel)]="genreReg" required>
+                <mat-hint *ngIf="genre.valid || !genre.touched">Unesite žanr/ove knjige</mat-hint>
+                <mat-hint *ngIf="genre.invalid && genre.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Jezik na kom je pisana knjiga</mat-label>
+                <input matInput type="text" #language="ngModel" name="language" [(ngModel)]="languageReg" required>
+                <mat-hint *ngIf="language.valid || !language.touched">Unesite jezik na kom je izdanje knjige</mat-hint>
+                <mat-hint *ngIf="language.invalid && language.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Godina objavljivanja</mat-label>
+                <input matInput type="text" #publish="ngModel" name="publish" [(ngModel)]="publishReg"
+                    pattern="[0-9]{4,4}" required>
+                <mat-hint *ngIf="publish.valid || !publish.touched">Unesite godinu izdavanja knjige</mat-hint>
+                <mat-hint *ngIf="publish.invalid && publish.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Izdavač</mat-label>
+                <input matInput type="text" #publisher="ngModel" name="publisher" [(ngModel)]="publisherReg" required>
+                <mat-hint *ngIf="publisher.valid || !publisher.touched">Unesite izdavača knjige</mat-hint>
+                <mat-hint *ngIf="publisher.invalid && publisher.touched" style="color: red">OBAVEZNO POLJE ili
+                    neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Autori</mat-label>
+                <input matInput type="text" #writers="ngModel" name="writers" [(ngModel)]="writersReg" required>
+                <mat-hint *ngIf="writers.valid || !writers.touched">Unesite ime i prezime autora knjige</mat-hint>
+                <mat-hint *ngIf="writers.invalid && writers.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="setPadd" appearance="fill">
+                <mat-label>Broj knjiga</mat-label>
+                <input matInput type="text" #numOfBooks="ngModel" name="numOfBooks" [(ngModel)]="numOfBooksReg"
+                    pattern="[0-9]{1,2}" required>
+                <mat-hint *ngIf="numOfBooks.valid || !numOfBooks.touched">Unesite broj primeraka knjige</mat-hint>
+                <mat-hint *ngIf="numOfBooks.invalid && numOfBooks.touched" style="color: red">OBAVEZNO POLJE ili
+                    neispravno uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <mat-form-field style="width: 50%;" appearance="fill">
+                <mat-label>Opis</mat-label>
+                <textarea matInput type="text" #caption="ngModel" name="caption" [(ngModel)]="captionReg"
+                    required></textarea>
+                <mat-hint *ngIf="caption.valid || !caption.touched">Unesite opis knjige</mat-hint>
+                <mat-hint *ngIf="caption.invalid && caption.touched" style="color: red">OBAVEZNO POLJE ili neispravno
+                    uneti podaci</mat-hint>
+            </mat-form-field>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <input type="file" name="myfile" (change)="selectImage($event)">
+        </div>
+        <br />
+        <div class="basicCenter">
+            <button *ngIf="user.userType=='user'" [disabled]="title.invalid || genre.invalid || language.invalid || publish.invalid || writers.invalid 
+                || caption.invalid || numOfBooks.invalid" mat-raised-button color="primary" (click)="insert()">Pošalji
+                zahtev</button>
+            <button *ngIf="user.userType=='moderator'" [disabled]="title.invalid || genre.invalid || language.invalid || publish.invalid || writers.invalid 
+                || caption.invalid || numOfBooks.invalid || publisher.invalid" mat-raised-button color="primary"
+                (click)="insertBook()">Dodaj knjigu</button>
+        </div>
+        <br />
+        <div class="basicCenter">
+            <span [ngStyle]="{'color': errorFlag? 'red' : 'white'}">{{messageReg}}</span>
+        </div>
+    </mat-expansion-panel>
+    <br />
+    <div class="basicCenter">
+        <h2 class="mat-display-1">PREDSTAVLJAMO VAM KNJIGU DANA!</h2>
+    </div>
+    <div class="basicCenter">
+        <mat-card class="my-card">
+            <mat-card-header>
+                <mat-card-title>{{bookOfDay.title.toUpperCase()}}</mat-card-title>
+                <mat-card-subtitle>{{bookOfDay.writers.toUpperCase()}}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="basicCenter">
+                <img src="../../assets/images/{{bookOfDay.img}}" style="max-height: 100px;">
+            </div>
+            <mat-card-content>
+                <p>
+                    {{bookOfDay.caption}}
+                </p>
+                <p>
+                    <strong>Ocena: </strong>{{bookOfDay.rating}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button *ngIf="user.status!='blocked'" mat-button (click)="bookPage(bookOfDay)">DETALJNIJE...</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <br />
+    <div class="basicCenter" *ngIf="user.userType=='moderator'">
+        <h2 class="mat-display-1">UPRAVLJAJTE ZAHTEVIMA ZA DODAVANJE KNJIGE!</h2>
+    </div>
+    <div class="basicCenter" *ngIf="user.userType=='moderator'">
+        <form name="formica2">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Korisničko ime</th>
+                    <th>Naslov</th>
+                    <th>Zanr</th>
+                    <th>Jezik</th>
+                    <th>Godina objavljivanja</th>
+                    <th>Izdavač</th>
+                    <th>Pisci</th>
+                    <th>Opis</th>
+                    <th>Broj primeraka</th>
+                </tr>
+                <tr *ngFor="let req of bookRequests">
+                    <td>
+                        <span>{{req.id}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.username}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.title}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.genre}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.language}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.publishYear}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.publisher}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.writers}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.caption}}</span>
+                    </td>
+                    <td>
+                        <span>{{req.numOfBooks}}</span>
+                    </td>
+                    <td>
+                        <button type="submit" mat-raised-button color="warn"
+                            (click)="registerBook(req)">Prihvati</button>
+                    </td>
+                    <td>
+                        <button type="submit" (click)="deleteReq(req)" mat-raised-button color="primary">Obriši</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <h2 class="mat-display-1">Trenutno zadužene knjige</h2>
+    </div>
+    <mat-grid-list cols="3" rowHeight="700px" *ngIf="hasBorrowedBook">
+        <ng-container *ngFor="let book of borrowedBooks">
+            <mat-grid-tile>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{book.title.toUpperCase()}}</mat-card-title>
+                        <mat-card-subtitle>{{book.writers.toUpperCase()}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img src="../../assets/images/{{book.img}}" style="max-height: 200px;">
+                    <mat-card-content>
+                        <p>
+                            {{book.caption}}
+                        </p>
+                        <p>
+                            <strong>Ocena: </strong>{{book.rating}}
+                        </p>
+                        <p *ngIf="getNumOfDays(book)>=0">
+                            <strong>Koliko dana je ostalo do roka za vraćanje:
+                            </strong>&nbsp;{{getNumOfDays(book)}}
+                        </p>
+                        <p *ngIf="getNumOfDays(book)<0">
+                            <strong style="color: red;">ISTEKAO VAM JE ROK ZA VRACANJE KNJGE!!!</strong>
+                        </p>
+                        <p *ngIf="!isExtended(book)">
+                            <button mat-raised-button (click)="setExtend(book)" color="primary">Produži</button>
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" *ngIf="user.status=='active'"
+                            (click)="bookPage(book)">DETALJNIJE...</button>
+                        <button mat-raised-button color="warn" (click)="returnBook(book)">VRATI</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+    <div class="basicCenter" *ngIf="!hasBorrowedBook" style="color: rgb(255, 162, 0);">
+        <h2>Nemate zaduženu ni jednu knjigu. Nastavite sa pretragom kako biste pozajmili Vašu omiljenu knjigu koju
+            nikako da pročitate!</h2>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <h2>Obaveštenja</h2>
+    </div>
+    <div class="basicCenter">
+        <h4>
+            <ul>
+                <li *ngIf="user.status=='blocked'"><strong style="color: red;">Vaš nalog je blokiran od strane
+                        administratora.</strong> </li>
+                <li *ngIf="borrowedBooks.length==3">Imate zadužen maksimalan broj knjiga</li>
+            </ul>
+            <ul *ngFor="let info of messagesForBorrowings">
+                <li>{{info}}</li>
+            </ul>
+            <ul *ngFor="let book of suggestedBooks">
+                <li>Moderator je prihvatio Vašu knjigu {{book.title.toUpperCase()}}!</li>
+            </ul>
+            <ul *ngFor="let acc of acceptedRes">
+                <li>
+                    Prihvacena je vaša rezervacija knjige {{acc.title.toUpperCase()}}!
+                    <button mat-raised-button color="primary" (click)="changeResStatus(acc)">U redu</button>
+                </li>
+            </ul>
+        </h4>
+    </div>
+    <div class="basicCenter">
+        <h2 class="mat-display-1">Izvršite pretragu knjiga na osnovu izdavača ili naziva knjige</h2>
+    </div>
+    <div class="basicCenter">
+        <mat-form-field appearance="fill" [style.width.px]=500>
+            <mat-label>Unesite naslov knjige i/ili autora</mat-label>
+            <input matInput [(ngModel)]="searchTerm">
+            <mat-icon (click)="searchByParam()" matPrefix>search</mat-icon>
+            <mat-hint>Unesite naslov knjige i/ili autora po kome želite da vršite pretragu</mat-hint>
+        </mat-form-field>
+    </div>
+    <br />
+    <div class="basicCenter">
+        <span style="color: red;">{{searchMessage}}</span>
+    </div>
+    <mat-grid-list cols="4" rowHeight="600px">
+        <ng-container *ngFor="let book of searchedBooks">
+            <mat-grid-tile>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{book.title.toUpperCase()}}</mat-card-title>
+                        <mat-card-subtitle>{{book.genre.toUpperCase()}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img src="../../assets/images/{{book.img}}" style="max-height: 200px;">
+                    <mat-card-content>
+                        <p>
+                            {{book.caption}}
+                        </p>
+                        <p>
+                            <strong>Ocena: </strong>{{book.rating}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button *ngIf="user.status=='active'" (click)="bookPage(book)">DETALJNIJE...</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+    <div class="basicCenter">
+        <span style="color: white;">{{messageReg}}</span>
+    </div>
+</body>
